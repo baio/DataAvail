@@ -25,10 +25,17 @@ namespace DataAvail.DataService
             {
                 ResponsetHeaders.Add("Access-Control-Allow-Origin", Origin);
                 ResponsetHeaders.Add("Access-Control-Allow-Credentials", "true");
+                ResponsetHeaders.Add("Access-Control-Allow-Headers", "Content-Type, DataServiceVersion");
+                ResponsetHeaders.Add("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE");
+                //Access-Control-Expose-Headers: Content-Type, Content-Length 
+                //ResponsetHeaders.Add("Access-Control-Allow-Headers", "Origin, Content-Type, Accept, DataServiceVersion");
             }
             else
             {
                 ResponsetHeaders.Add("Access-Control-Allow-Origin", AccessAllowOrigin);
+                ResponsetHeaders.Add("Access-Control-Allow-Headers", "Content-Type, DataServiceVersion");
+                ResponsetHeaders.Add("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE");
+                //ResponsetHeaders.Add("Access-Control-Allow-Headers", "Origin, Content-Type, Accept, DataServiceVersion");
             }
 
             return true;
