@@ -12,7 +12,7 @@ namespace DataAvail.UralAppService
 {
     [JSONPSupportBehavior]
     [ServiceBehavior(IncludeExceptionDetailInFaults = true)]
-    public class Service : DataService<DataAvail.UralAppModel.Model>
+    public class Service : DataService<DataServiceProvider>
     {
         // Этот метод вызывается только один раз для инициализации серверных политик.
         public static void InitializeService(DataServiceConfiguration config)
@@ -22,6 +22,7 @@ namespace DataAvail.UralAppService
             config.SetEntitySetAccessRule("*", EntitySetRights.All);
             // config.SetServiceOperationAccessRule("СлужебнаяОперация", ServiceOperationRights.All);
             config.DataServiceBehavior.MaxProtocolVersion = DataServiceProtocolVersion.V3;
+            config.DataServiceBehavior.AcceptProjectionRequests = true; //???
         }
     }
 }

@@ -79,6 +79,9 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataServiceProvider.cs" />
+    <Compile Include="Models\Product.cs" />
+    <Compile Include="Repositories\ProductRepository.cs" />
     <Compile Include="Service.svc.cs">
       <DependentUpon>Service.svc</DependentUpon>
     </Compile>
@@ -105,9 +108,21 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DataAvail.DataService.Provider\DataAvail.DataService.Provider.csproj">
+      <Project>{41D01B92-FBC9-4907-B816-EA9AB1DBDCEF}</Project>
+      <Name>DataAvail.DataService.Provider</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DataAvail.DataService\DataAvail.DataService.csproj">
       <Project>{06C29DB7-912D-46DB-8CCA-A483CF108E0A}</Project>
       <Name>DataAvail.DataService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataAvail.LinqMapper\DataAvail.LinqMapper.csproj">
+      <Project>{FA40084C-24E9-4549-868E-C427CA346177}</Project>
+      <Name>DataAvail.LinqMapper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Microsoft.WcfDSToolkit\Microsoft.Data.Services.Toolkit.csproj">
+      <Project>{E38FE120-4439-4A23-B6F6-88CB0BE4E493}</Project>
+      <Name>Microsoft.Data.Services.Toolkit</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
