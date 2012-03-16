@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="DataAvail">
+</Property><Property Name="Solution File" Value="C:\dev\DataAvail.Framework\DataAvail.sln">
+</Property><Property Name="User Options File" Value="C:\dev\DataAvail.Framework\DataAvail.v11.suo">
+</Property><Property Name="Date" Value="14 марта 2012 г.">
+</Property><Property Name="Time" Value="9:13">
+</Property></Properties><Event ErrorLevel="3" Project="" Source="DataAvail.sln" Description="SafeUpgrade">
+</Event><Event ErrorLevel="0" Project="" Source="DataAvail.sln" Description="File successfully backed up as C:\dev\DataAvail.Framework\Backup\DataAvail.sln">
+</Event><Event ErrorLevel="0" Project="" Source="DataAvail.v11.suo" Description="File successfully backed up as C:\dev\DataAvail.Framework\Backup\DataAvail.v11.suo">
+</Event><Event ErrorLevel="3" Project="DataAvail.UralAppService" Source="DataAvail.UralAppService\DataAvail.UralAppService.csproj" Description="SafeUpgrade">
+</Event><Event ErrorLevel="0" Project="DataAvail.UralAppService" Source="DataAvail.UralAppService\DataAvail.UralAppService.csproj" Description="Project file successfully backed up as C:\dev\DataAvail.Framework\Backup\DataAvail.UralAppService\DataAvail.UralAppService.csproj">
+</Event><Event ErrorLevel="0" Project="DataAvail.UralAppService" Source="DataAvail.UralAppService\DataAvail.UralAppService.csproj.user" Description="Project user file successfully backed up as C:\dev\DataAvail.Framework\Backup\DataAvail.UralAppService\DataAvail.UralAppService.csproj.user">
+</Event><Event ErrorLevel="0" Project="DataAvail.UralAppService" Source="DataAvail.UralAppService\Service.svc.cs" Description="File successfully backed up as C:\dev\DataAvail.Framework\Backup\DataAvail.UralAppService\Service.svc.cs">
+</Event><Event ErrorLevel="0" Project="DataAvail.UralAppService" Source="DataAvail.UralAppService\Properties\AssemblyInfo.cs" Description="File successfully backed up as C:\dev\DataAvail.Framework\Backup\DataAvail.UralAppService\Properties\AssemblyInfo.cs">
+</Event><Event ErrorLevel="0" Project="DataAvail.UralAppService" Source="DataAvail.UralAppService\UralAppModel.Designer.cs" Description="File successfully backed up as C:\dev\DataAvail.Framework\Backup\DataAvail.UralAppService\UralAppModel.Designer.cs">
+</Event><Event ErrorLevel="0" Project="DataAvail.UralAppService" Source="DataAvail.UralAppService\UralAppModel.Diagram1.view" Description="File successfully backed up as C:\dev\DataAvail.Framework\Backup\DataAvail.UralAppService\UralAppModel.Diagram1.view">
+</Event><Event ErrorLevel="0" Project="DataAvail.UralAppService" Source="DataAvail.UralAppService\UralAppModel.edps" Description="File successfully backed up as C:\dev\DataAvail.Framework\Backup\DataAvail.UralAppService\UralAppModel.edps">
+</Event><Event ErrorLevel="0" Project="DataAvail.UralAppService" Source="DataAvail.UralAppService\Service.svc" Description="File successfully backed up as C:\dev\DataAvail.Framework\Backup\DataAvail.UralAppService\Service.svc">
+</Event><Event ErrorLevel="0" Project="DataAvail.UralAppService" Source="DataAvail.UralAppService\Web.config" Description="File successfully backed up as C:\dev\DataAvail.Framework\Backup\DataAvail.UralAppService\Web.config">
+</Event><Event ErrorLevel="0" Project="DataAvail.UralAppService" Source="DataAvail.UralAppService\Web.Debug.config" Description="File successfully backed up as C:\dev\DataAvail.Framework\Backup\DataAvail.UralAppService\Web.Debug.config">
+</Event><Event ErrorLevel="0" Project="DataAvail.UralAppService" Source="DataAvail.UralAppService\Web.Release.config" Description="File successfully backed up as C:\dev\DataAvail.Framework\Backup\DataAvail.UralAppService\Web.Release.config">
+</Event><Event ErrorLevel="0" Project="DataAvail.UralAppService" Source="DataAvail.UralAppService\DataAvail.UralAppService.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="DataAvail.UralAppService" Source="DataAvail.UralAppService\DataAvail.UralAppService.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="" Source="DataAvail.sln" Description="Solution converted successfully">
+</Event><Event ErrorLevel="3" Project="" Source="DataAvail.sln" Description="Converted">
+</Event><Event ErrorLevel="0" Project="DataAvail.UralAppService" Source="DataAvail.UralAppService\DataAvail.UralAppService.csproj" Description="Scan complete: Upgrade not required for project files.">
+</Event></UpgradeLog>
