@@ -102,6 +102,7 @@
     <DevartEntityDeploy Include="UralAppModel.edml">
       <Generator>DevartEfGenerator</Generator>
       <LastGenOutput>UralAppModel.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </DevartEntityDeploy>
     <None Include="UralAppModel.edps">
       <DependentUpon>UralAppModel.edml</DependentUpon>

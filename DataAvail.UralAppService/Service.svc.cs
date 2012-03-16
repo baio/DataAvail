@@ -7,6 +7,8 @@ using System.ServiceModel.Web;
 using System.Web;
 using DataAvail.DataService;
 using System.ServiceModel;
+using DataAvail.LinqMapper;
+using DataAvail.UralAppService.Models;
 
 namespace DataAvail.UralAppService
 {
@@ -23,6 +25,12 @@ namespace DataAvail.UralAppService
             // config.SetServiceOperationAccessRule("СлужебнаяОперация", ServiceOperationRights.All);
             config.DataServiceBehavior.MaxProtocolVersion = DataServiceProtocolVersion.V3;
             config.DataServiceBehavior.AcceptProjectionRequests = true; //???
+
+            //Mapping
+
+            Mapper.CreateMap<DataAvail.UralAppModel.Product, Product>()
+                .ForMember(p => p.id, opt => opt.MapFrom(p => p.Id))
+                .ForMember(p => p.name, opt => opt.MapFrom(p => p.Name));
         }
     }
 }

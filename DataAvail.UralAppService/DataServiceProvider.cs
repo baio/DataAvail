@@ -10,7 +10,8 @@ namespace DataAvail.UralAppService
     {
         public DataServiceProvider()
             : base("DataAvail.UralAppService.Repositories.{0}Repository")
-        { }
+        {
+        }
 
         public IQueryable<Product> Products
         {

@@ -7,6 +7,7 @@ using System.Reflection;
 using System.Web;
 using Microsoft.Data.Services.Toolkit.QueryModel;
 using System.Linq.Expressions;
+using System.Data.Services.Common;
 
 namespace DataAvail.DataService.Provider
 {
@@ -49,30 +50,11 @@ namespace DataAvail.DataService.Provider
 
         public T GetOne(string id)
         {
-            //var q = DataAvail.LinqMapper.Mapper.Map<E, T>(IQueryable<E> Src, GetExpands());
-            /*
-            var q = Queryable.Project().To<T>(GetExpands());
+            var q = DataAvail.LinqMapper.Mapper.Map<E, T>(Queryable, GetExpands());
 
-            var type = typeof(T);
+            q = FilterByKey(q, id);
 
-            var keyFieldName = type.GetCustomAttributes(false).OfType<DataServiceKeyAttribute>().SingleOrDefault().KeyNames[0];
-
-            var keyField = (PropertyInfo)type.GetMember(keyFieldName)[0];
-
-            return AppendWhere(q, keyField.Name, id).SingleOrDefault();
-
-            
-            var key = int.Parse(id);
-
-            ParameterExpression prm = Expression.Parameter(typeof(T), "x");
-            MemberExpression member = Expression.MakeMemberAccess(prm, keyField);
-            ConstantExpression idParam = Expression.Constant(key, keyField.PropertyType);
-            BinaryExpression expr = Expression.Equal(member, idParam);
-            Expression<Func<T, bool>> lambda = Expression.Lambda<Func<T, bool>>(expr, new ParameterExpression[] { prm });
-
-            return q.Where(lambda).SingleOrDefault();
-             */
-            return null;
+            return q.FirstOrDefault();
         }
 
         public IEnumerable<T> GetAll(ODataQueryOperation operation)
@@ -98,6 +80,26 @@ namespace DataAvail.DataService.Provider
 
             return q;
         }
+
+        private static IQueryable<T> FilterByKey<T>(IQueryable<T> Queryable, string KeyValue)
+        {
+            var type = typeof(T);
+
+            var keyFieldName = type.GetCustomAttributes(false).OfType<DataServiceKeyAttribute>().SingleOrDefault().KeyNames[0];
+
+            var keyField = (PropertyInfo)type.GetMember(keyFieldName)[0];
+
+            var key = int.Parse(KeyValue);
+
+            ParameterExpression prm = Expression.Parameter(typeof(T), "x");
+            MemberExpression member = Expression.MakeMemberAccess(prm, keyField);
+            ConstantExpression idParam = Expression.Constant(key, keyField.PropertyType);
+            BinaryExpression expr = Expression.Equal(member, idParam);
+            Expression<Func<T, bool>> lambda = Expression.Lambda<Func<T, bool>>(expr, new ParameterExpression[] { prm });
+
+            return Queryable.Where(lambda);
+        }
+
 
         /*
         public IEnumerable<T> GetAllByForeignKey(ODataQueryOperation operation, string FKFieldName, string id)

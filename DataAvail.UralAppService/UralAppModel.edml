@@ -9,10 +9,10 @@
         </EntityContainer>
         <EntityType Name="Products">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" />
-          <Property Name="name" Type="varchar(max)" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar(max)" Nullable="false" />
         </EntityType>
       </Schema>
     </edmx:StorageModels>
@@ -24,10 +24,10 @@
         </EntityContainer>
         <EntityType Name="Product" ed:Guid="422e95fc-ee78-407e-8c75-da2802fe076c">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" ed:Guid="4a01fc34-8e08-46de-98fa-fadaf45f4b34" />
-          <Property Name="name" Type="String" Nullable="false" ed:Guid="8e888dd4-585d-4092-9b16-1cf2f839d49f" />
+          <Property Name="Id" Type="Int32" Nullable="false" ed:Guid="4a01fc34-8e08-46de-98fa-fadaf45f4b34" />
+          <Property Name="Name" Type="String" Nullable="false" ed:Guid="8e888dd4-585d-4092-9b16-1cf2f839d49f" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -38,8 +38,8 @@
           <EntitySetMapping Name="Products">
             <EntityTypeMapping TypeName="DataAvail.UralAppModel.Product">
               <MappingFragment StoreEntitySet="Products">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

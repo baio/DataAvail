@@ -5,7 +5,6 @@ using System.Web;
 using DataAvail.UralAppService.Models;
 using DataAvail.DataService.Provider;
 using System.Data.Objects;
-using DataAvail.LinqMapper;
 
 namespace DataAvail.UralAppService.Repositories
 {
@@ -13,8 +12,7 @@ namespace DataAvail.UralAppService.Repositories
     public class ProductRepository : Repository<DataAvail.UralAppModel.Product, Product>
     {
         public ProductRepository()
-        {            
-            Mapper.CreateMap<DataAvail.UralAppModel.Product, Product>();
+        {                        
         }
 
         private readonly ObjectContext _context = new DataAvail.UralAppModel.Model();
