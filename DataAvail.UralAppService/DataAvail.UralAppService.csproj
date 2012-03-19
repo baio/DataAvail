@@ -83,8 +83,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataServiceProvider.cs" />
+    <Compile Include="Models\Producer.cs" />
     <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\Tag.cs" />
+    <Compile Include="Repositories\ProducerRepository.cs" />
     <Compile Include="Repositories\ProductRepository.cs" />
+    <Compile Include="Repositories\TagRepository.cs" />
     <Compile Include="Service.svc.cs">
       <DependentUpon>Service.svc</DependentUpon>
     </Compile>

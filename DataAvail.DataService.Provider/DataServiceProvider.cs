@@ -5,6 +5,7 @@ using System.Text;
 using Microsoft.Data.Services.Toolkit.Providers;
 using Microsoft.Data.Services.Toolkit.QueryModel;
 using System.Reflection;
+using System.Data.Objects;
 
 namespace DataAvail.DataService.Provider
 {
@@ -31,17 +32,19 @@ namespace DataAvail.DataService.Provider
 
     public abstract class DataServiceProvider : ODataContext
     {
-        public DataServiceProvider(string RepositoryTypeTemplate)
-            : this(null, RepositoryTypeTemplate)
+        public DataServiceProvider(ObjectContext Context, string RepositoryTypeTemplate)
+            : this(Context, null, RepositoryTypeTemplate)
         {
         }
 
-        public DataServiceProvider(Assembly Assembly,  string RepositoryTypeTemplate)
+        public DataServiceProvider(ObjectContext Context, Assembly Assembly, string RepositoryTypeTemplate)
         {
+            _context = Context;
             _assembly = Assembly ?? Assembly.GetAssembly(this.GetType());
             _repositoryTypeTemplate = RepositoryTypeTemplate;
         }
 
+        private readonly ObjectContext _context;
         private readonly Assembly _assembly;
         private readonly string _repositoryTypeTemplate;
 
@@ -51,7 +54,9 @@ namespace DataAvail.DataService.Provider
             string typeName = fullTypeName.Replace("[]", string.Empty).Substring(fullTypeName.LastIndexOf('.') + 1);
             Type repoType = _assembly.GetType(string.Format(_repositoryTypeTemplate , typeName));
             if (repoType == null) throw new NotSupportedException("The specified type is not an Entity inside the OData API");
-            return Activator.CreateInstance(repoType);
+            object repository = Activator.CreateInstance(repoType);
+            ((IRepository)repository).SetContext(_context);
+            return repository;
         }
     }
 }

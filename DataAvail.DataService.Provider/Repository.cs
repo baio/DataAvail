@@ -12,16 +12,19 @@ using DataAvail.LinqMapper;
 
 namespace DataAvail.DataService.Provider
 {
-    public abstract class Repository<E, T> 
+    public abstract class Repository<E, T> : IRepository
         where E : class
         where T : class, new()
     {
-
-        protected abstract ObjectContext Context { get; }
-
         public Repository()
-        { 
-        
+        {
+        }
+
+        protected ObjectContext Context { get; private set; }
+
+        public void SetContext(ObjectContext Context)
+        {
+            this.Context = Context;
         }
 
         protected IQueryable<E> Queryable
@@ -60,7 +63,7 @@ namespace DataAvail.DataService.Provider
 
         public IEnumerable<T> GetAll(ODataQueryOperation operation)
         {
-            var q = DataAvail.LinqMapper.Mapper.Map<E, T>(Queryable, GetExpands());
+            var q = Mapper.Map<E, T>(Queryable, GetExpands());
 
             if (operation.FilterExpression != null)
             {
@@ -103,13 +106,18 @@ namespace DataAvail.DataService.Provider
         }
 
 
-        private IQueryable<T> FilterByKey<T>(IQueryable<T> Queryable, string KeyValue)
+        private IQueryable<T> FilterByKey(IQueryable<T> Queryable, string KeyValue)
+        {
+            return FilterBy(Queryable, KeyFieldName, KeyValue);
+        }
+
+        private IQueryable<T> FilterBy(IQueryable<T> Queryable, string FieldName, string Value)
         {
             var type = typeof(T);
 
-            var keyField = (PropertyInfo)type.GetMember(this.KeyFieldName)[0];
+            var keyField = (PropertyInfo)type.GetMember(FieldName)[0];
 
-            var key = int.Parse(KeyValue);
+            var key = int.Parse(Value);
 
             ParameterExpression prm = Expression.Parameter(typeof(T), "x");
             MemberExpression member = Expression.MakeMemberAccess(prm, keyField);
@@ -173,33 +181,11 @@ namespace DataAvail.DataService.Provider
         }
 
 
-        /*
-        public IEnumerable<T> GetAllByForeignKey(ODataQueryOperation operation, string FKFieldName, string id)
+        public IQueryable<T> GetAllByForeignKey(ODataQueryOperation operation, string FKFieldName, string FKValue)
         {
-            return GetQueryable(AppendWhere<E>(Queryable, FKFieldName, id), operation);
-        }
+            var q = Mapper.Map<E, T>(Queryable, GetExpands());
 
-
-        private static IQueryable<I> AppendWhere<I>(IQueryable<I> Queryable, string FieldName, string Value)
-        {
-            var type = typeof(I);
-
-            var keyField = (PropertyInfo)type.GetMember(FieldName)[0];
-
-            var key = int.Parse(Value);
-
-            ParameterExpression prm = Expression.Parameter(typeof(I), "x");
-            MemberExpression member = Expression.MakeMemberAccess(prm, keyField);
-            ConstantExpression idParam = Expression.Constant(key, keyField.PropertyType);
-            BinaryExpression expr = Expression.Equal(member, idParam);
-            Expression<Func<I, bool>> lambda = Expression.Lambda<Func<I, bool>>(expr, new ParameterExpression[] { prm });
-
-            return Queryable.Where(lambda);
-        }
-
-        private static IQueryable<T> GetQueryable(IQueryable<E> Query, ODataQueryOperation operation)
-        {
-            var q = LinqMapper.Mapper.Map<E, T>(Query, GetExpands()); // Query.Project().To<T>(GetExpands());
+            q = FilterBy(q, FKFieldName, FKValue);
 
             if (operation.FilterExpression != null)
             {
@@ -220,6 +206,8 @@ namespace DataAvail.DataService.Provider
 
             return q;
         }
-         */
+
+
+
     }
 }

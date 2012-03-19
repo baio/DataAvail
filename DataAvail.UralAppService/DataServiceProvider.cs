@@ -9,7 +9,7 @@ namespace DataAvail.UralAppService
     public class DataServiceProvider : DataAvail.DataService.Provider.DataServiceProvider
     {
         public DataServiceProvider()
-            : base("DataAvail.UralAppService.Repositories.{0}Repository")
+            : base(new UralAppModel.Model(), "DataAvail.UralAppService.Repositories.{0}Repository")
         {
         }
 
@@ -20,6 +20,23 @@ namespace DataAvail.UralAppService
                 return base.CreateQuery<Product>();
             }
         }
+
+        public IQueryable<Producer> Producers
+        {
+            get
+            {
+                return base.CreateQuery<Producer>();
+            }
+        }
+
+        public IQueryable<Tag> Tags
+        {
+            get
+            {
+                return base.CreateQuery<Tag>();
+            }
+        }
+
 
     }
 }
