@@ -28,9 +28,18 @@ namespace DataAvail.UralAppService
 
             //Mapping
 
+            //Entity to Item
+
             Mapper.CreateMap<DataAvail.UralAppModel.Product, Product>()
                 .ForMember(p => p.id, opt => opt.MapFrom(p => p.Id))
                 .ForMember(p => p.name, opt => opt.MapFrom(p => p.Name));
+
+            //Item to Entity
+            AutoMapper.Mapper.CreateMap<Product, DataAvail.UralAppModel.Product>()
+                .ForMember(p => p.Id, opt => opt.MapFrom(p => p.id))
+                .ForMember(p => p.Name, opt => opt.MapFrom(p => p.name));
+
+
         }
     }
 }

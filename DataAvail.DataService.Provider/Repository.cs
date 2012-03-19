@@ -8,12 +8,13 @@ using System.Web;
 using Microsoft.Data.Services.Toolkit.QueryModel;
 using System.Linq.Expressions;
 using System.Data.Services.Common;
+using DataAvail.LinqMapper;
 
 namespace DataAvail.DataService.Provider
 {
-    public abstract class Repository<E, T>
+    public abstract class Repository<E, T> 
         where E : class
-        where T : class
+        where T : class, new()
     {
 
         protected abstract ObjectContext Context { get; }
@@ -50,7 +51,7 @@ namespace DataAvail.DataService.Provider
 
         public T GetOne(string id)
         {
-            var q = DataAvail.LinqMapper.Mapper.Map<E, T>(Queryable, GetExpands());
+            var q = Mapper.Map<E, T>(Queryable, GetExpands());
 
             q = FilterByKey(q, id);
 
@@ -81,13 +82,21 @@ namespace DataAvail.DataService.Provider
             return q;
         }
 
-        private static IQueryable<T> FilterByKey<T>(IQueryable<T> Queryable, string KeyValue)
+        private string KeyFieldName
+        {
+            get
+            {
+                var type = typeof(T);
+
+                return type.GetCustomAttributes(false).OfType<DataServiceKeyAttribute>().SingleOrDefault().KeyNames[0];                
+            }
+        }
+
+        private IQueryable<T> FilterByKey<T>(IQueryable<T> Queryable, string KeyValue)
         {
             var type = typeof(T);
 
-            var keyFieldName = type.GetCustomAttributes(false).OfType<DataServiceKeyAttribute>().SingleOrDefault().KeyNames[0];
-
-            var keyField = (PropertyInfo)type.GetMember(keyFieldName)[0];
+            var keyField = (PropertyInfo)type.GetMember(this.KeyFieldName)[0];
 
             var key = int.Parse(KeyValue);
 
@@ -98,6 +107,30 @@ namespace DataAvail.DataService.Provider
             Expression<Func<T, bool>> lambda = Expression.Lambda<Func<T, bool>>(expr, new ParameterExpression[] { prm });
 
             return Queryable.Where(lambda);
+        }
+
+
+        public object CreateDefaultEntity()
+        {
+            return new T();
+        }
+
+        public object Save(object Item)
+        {
+            var entity = AutoMapper.Mapper.Map<T, E>(((T[])Item)[0]);
+
+            Context.AttachTo(typeof(E).Name + "s", entity);
+
+            Context.ObjectStateManager.ChangeObjectState(entity, System.Data.EntityState.Modified);
+           
+            Context.SaveChanges();
+
+            return Item;
+        }
+
+        public void Remove(object Entity)
+        { 
+        
         }
 
 

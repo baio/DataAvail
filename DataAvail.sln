@@ -17,7 +17,19 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAvail.DataService.Provi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Data.Services.Toolkit", "Microsoft.WcfDSToolkit\Microsoft.Data.Services.Toolkit.csproj", "{E38FE120-4439-4A23-B6F6-88CB0BE4E493}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAvail.UralAppService.Test", "DataAvail.UralAppService.Test\DataAvail.UralAppService.Test.csproj", "{EB0CDFF8-F87B-4E91-B752-91326B01F1C7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B9F4AB76-F1BA-4904-9F1A-8ADD994848BD}"
+	ProjectSection(SolutionItems) = preProject
+		DataAvail.vsmdi = DataAvail.vsmdi
+		Local.testsettings = Local.testsettings
+		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
+	EndProjectSection
+EndProject
 Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = DataAvail.vsmdi
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -72,6 +84,12 @@ Global
 		{E38FE120-4439-4A23-B6F6-88CB0BE4E493}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E38FE120-4439-4A23-B6F6-88CB0BE4E493}.Staging|Any CPU.ActiveCfg = Staging|Any CPU
 		{E38FE120-4439-4A23-B6F6-88CB0BE4E493}.Staging|Any CPU.Build.0 = Staging|Any CPU
+		{EB0CDFF8-F87B-4E91-B752-91326B01F1C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB0CDFF8-F87B-4E91-B752-91326B01F1C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB0CDFF8-F87B-4E91-B752-91326B01F1C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB0CDFF8-F87B-4E91-B752-91326B01F1C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB0CDFF8-F87B-4E91-B752-91326B01F1C7}.Staging|Any CPU.ActiveCfg = Release|Any CPU
+		{EB0CDFF8-F87B-4E91-B752-91326B01F1C7}.Staging|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
