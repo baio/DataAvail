@@ -27,6 +27,8 @@ namespace DataAvail.DataService
                 ResponsetHeaders.Add("Access-Control-Allow-Credentials", "true");
                 ResponsetHeaders.Add("Access-Control-Allow-Headers", "Content-Type, DataServiceVersion");
                 ResponsetHeaders.Add("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE");
+                //ResponsetHeaders.Add("Allow", "GET, PUT, POST, DELETE, OPTIONS");
+
                 //Access-Control-Expose-Headers: Content-Type, Content-Length 
                 //ResponsetHeaders.Add("Access-Control-Allow-Headers", "Origin, Content-Type, Accept, DataServiceVersion");
             }
@@ -35,6 +37,7 @@ namespace DataAvail.DataService
                 ResponsetHeaders.Add("Access-Control-Allow-Origin", AccessAllowOrigin);
                 ResponsetHeaders.Add("Access-Control-Allow-Headers", "Content-Type, DataServiceVersion");
                 ResponsetHeaders.Add("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE");
+                //ResponsetHeaders.Add("Allow", "GET, PUT, POST, DELETE, OPTIONS");
                 //ResponsetHeaders.Add("Access-Control-Allow-Headers", "Origin, Content-Type, Accept, DataServiceVersion");
             }
 

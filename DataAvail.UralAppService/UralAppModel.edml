@@ -11,7 +11,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="varchar(max)" Nullable="false" />
         </EntityType>
       </Schema>
@@ -26,7 +26,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" ed:Guid="4a01fc34-8e08-46de-98fa-fadaf45f4b34" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" ed:Guid="4a01fc34-8e08-46de-98fa-fadaf45f4b34" />
           <Property Name="Name" Type="String" Nullable="false" ed:Guid="8e888dd4-585d-4092-9b16-1cf2f839d49f" />
         </EntityType>
       </Schema>

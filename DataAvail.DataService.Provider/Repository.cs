@@ -92,6 +92,17 @@ namespace DataAvail.DataService.Provider
             }
         }
 
+        private int GetKeyFieldValue(T Item)
+        {
+            return (int)Item.GetType().GetProperty(KeyFieldName).GetValue(Item, null);
+        }
+
+        private void SetKeyFieldValue(T Item, object Val)
+        {
+            Item.GetType().GetProperty(KeyFieldName).SetValue(Item, Val, null);
+        }
+
+
         private IQueryable<T> FilterByKey<T>(IQueryable<T> Queryable, string KeyValue)
         {
             var type = typeof(T);
@@ -112,25 +123,53 @@ namespace DataAvail.DataService.Provider
 
         public object CreateDefaultEntity()
         {
-            return new T();
+            var item = new T();
+
+            SetKeyFieldValue(item, -1);
+
+            return item;
+
         }
 
-        public object Save(object Item)
+        public void Save(object Item)
         {
-            var entity = AutoMapper.Mapper.Map<T, E>(((T[])Item)[0]);
+            if (Item.GetType().IsArray)
+                Item = ((T[])Item)[0];
+
+            var keyVal = GetKeyFieldValue((T)Item);
+
+            var entity = AutoMapper.Mapper.Map<T, E>((T)Item);
+
+            if (keyVal < 0)
+            {
+                Context.AddObject(typeof(E).Name + "s", entity);
+
+                Context.ObjectStateManager.ChangeObjectState(entity, System.Data.EntityState.Added);
+            }
+            else
+            {
+
+                Context.AttachTo(typeof(E).Name + "s", entity);
+
+                Context.ObjectStateManager.ChangeObjectState(entity, System.Data.EntityState.Modified);
+            }
+
+            Context.SaveChanges();
+
+            AutoMapper.Mapper.Map<E, T>(entity, (T)Item);
+        }
+
+        public void Remove(object Item)
+        {
+            var entity = AutoMapper.Mapper.Map<T, E>((T)Item);
 
             Context.AttachTo(typeof(E).Name + "s", entity);
 
-            Context.ObjectStateManager.ChangeObjectState(entity, System.Data.EntityState.Modified);
-           
+            Context.DeleteObject(entity);
+
+            Context.ObjectStateManager.ChangeObjectState(entity, System.Data.EntityState.Deleted);
+
             Context.SaveChanges();
-
-            return Item;
-        }
-
-        public void Remove(object Entity)
-        { 
-        
         }
 
 
