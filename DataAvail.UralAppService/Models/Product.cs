@@ -14,7 +14,10 @@ namespace DataAvail.UralAppService.Models
 
         public string name { get; set; }
 
-        internal int? ProducerId { get; set; }
+        [ForeignProperty]
+        public IEnumerable<Tag> Tags { get; set; } 
+
+        public int? ProducerId { get; set; }
     }
 
 }

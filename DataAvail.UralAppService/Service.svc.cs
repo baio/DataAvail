@@ -33,7 +33,8 @@ namespace DataAvail.UralAppService
             Mapper.CreateMap<DataAvail.UralAppModel.Product, Product>()
                 .ForMember(p => p.id, opt => opt.MapFrom(p => p.Id))
                 .ForMember(p => p.name, opt => opt.MapFrom(p => p.Name))
-                .ForMember(p => p.ProducerId, opt => opt.MapFrom(p => p.ProducerId));
+                .ForMember(p => p.ProducerId, opt => opt.MapFrom(p => p.ProducerId))
+                .ForMember(p => p.Tags, opt => opt.ResolveUsing(p => p.ProductTagMaps.Select(s => new Tag { id = s.Tag.Id, name = s.Tag.Name })));
 
             AutoMapper.Mapper.CreateMap<DataAvail.UralAppModel.Product, Product>()
                 .ForMember(p => p.id, opt => opt.MapFrom(p => p.Id))

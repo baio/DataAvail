@@ -15,6 +15,6 @@ namespace DataAvail.UralAppService.Models
         public string name { get; set; }
 
         [ForeignProperty]
-        public Product[] Products { get; set; }
+        public IEnumerable<Product> Products { get; set; }
     }
 }

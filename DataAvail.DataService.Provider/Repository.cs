@@ -65,6 +65,8 @@ namespace DataAvail.DataService.Provider
         {
             var q = Mapper.Map<E, T>(Queryable, GetExpands());
 
+            q = OnGetQuery(q);
+
             if (operation.FilterExpression != null)
             {
                 var expr = (System.Linq.Expressions.Expression<System.Func<T, bool>>)((UnaryExpression)operation.FilterExpression).Operand;
@@ -83,6 +85,11 @@ namespace DataAvail.DataService.Provider
             }
 
             return q;
+        }
+
+        protected virtual IQueryable<T> OnGetQuery(IQueryable<T> Query)
+        {
+            return Query;
         }
 
         private string KeyFieldName

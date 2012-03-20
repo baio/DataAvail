@@ -40,6 +40,7 @@
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Spatial, Version=4.99.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
@@ -51,30 +52,25 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LinqMapperTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Service References\UralAppServ\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.datasvcmap</DependentUpon>
-    </Compile>
     <Compile Include="UralAppServiceTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <ServiceReferenceMetadataStorage Include="Service References\UralAppServ\">
-      <Type>datasvcmap</Type>
-    </ServiceReferenceMetadataStorage>
+    <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\UralAppServ\service.edmx" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\UralAppServ\Reference.datasvcmap">
-      <Generator>DataServicesCoreClientGenerator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
+    <ProjectReference Include="..\DataAvail.LinqMapper\DataAvail.LinqMapper.csproj">
+      <Project>{FA40084C-24E9-4549-868E-C427CA346177}</Project>
+      <Name>DataAvail.LinqMapper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataAvail.UralAppService\DataAvail.UralAppService.csproj">
+      <Project>{CD39705C-B40C-4316-B41A-351408E3A9E1}</Project>
+      <Name>DataAvail.UralAppService</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
