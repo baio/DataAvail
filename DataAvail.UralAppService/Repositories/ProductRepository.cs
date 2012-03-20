@@ -13,10 +13,12 @@ namespace DataAvail.UralAppService.Repositories
 
     public class ProductRepository : Repository<DataAvail.UralAppModel.Product, Product>
     {
+        /*
         public IQueryable<Product> GetProductsByProducer(string id)
         {
             return GetAllByForeignKey("ProducerId", id);
         }
+         */
 
         /*
         protected override IQueryable<Product> OnGetQuery(IQueryable<Product> Query)
