@@ -29,9 +29,11 @@ namespace DataAvail.UralAppService
             //Mapping
 
 
+            //Products
             Mapper.CreateMap<DataAvail.UralAppModel.Product, Product>()
                 .ForMember(p => p.id, opt => opt.MapFrom(p => p.Id))
-                .ForMember(p => p.name, opt => opt.MapFrom(p => p.Name));
+                .ForMember(p => p.name, opt => opt.MapFrom(p => p.Name))
+                .ForMember(p => p.ProducerId, opt => opt.MapFrom(p => p.ProducerId));
 
             AutoMapper.Mapper.CreateMap<DataAvail.UralAppModel.Product, Product>()
                 .ForMember(p => p.id, opt => opt.MapFrom(p => p.Id))
@@ -40,6 +42,33 @@ namespace DataAvail.UralAppService
             AutoMapper.Mapper.CreateMap<Product, DataAvail.UralAppModel.Product>()
                 .ForMember(p => p.Id, opt => opt.MapFrom(p => p.id))
                 .ForMember(p => p.Name, opt => opt.MapFrom(p => p.name));
+
+            //Producers
+            Mapper.CreateMap<DataAvail.UralAppModel.Producer, Producer>()
+                .ForMember(p => p.id, opt => opt.MapFrom(p => p.Id))
+                .ForMember(p => p.name, opt => opt.MapFrom(p => p.Name));
+
+            AutoMapper.Mapper.CreateMap<DataAvail.UralAppModel.Producer, Producer>()
+                .ForMember(p => p.id, opt => opt.MapFrom(p => p.Id))
+                .ForMember(p => p.name, opt => opt.MapFrom(p => p.Name));
+
+            AutoMapper.Mapper.CreateMap<Producer, DataAvail.UralAppModel.Producer>()
+                .ForMember(p => p.Id, opt => opt.MapFrom(p => p.id))
+                .ForMember(p => p.Name, opt => opt.MapFrom(p => p.name));
+
+            //Tags
+            Mapper.CreateMap<DataAvail.UralAppModel.Tag, Tag>()
+                .ForMember(p => p.id, opt => opt.MapFrom(p => p.Id))
+                .ForMember(p => p.name, opt => opt.MapFrom(p => p.Name));
+
+            AutoMapper.Mapper.CreateMap<DataAvail.UralAppModel.Tag, Tag>()
+                .ForMember(p => p.id, opt => opt.MapFrom(p => p.Id))
+                .ForMember(p => p.name, opt => opt.MapFrom(p => p.Name));
+
+            AutoMapper.Mapper.CreateMap<Tag, DataAvail.UralAppModel.Tag>()
+                .ForMember(p => p.Id, opt => opt.MapFrom(p => p.id))
+                .ForMember(p => p.Name, opt => opt.MapFrom(p => p.name));
+
         }
 
     }

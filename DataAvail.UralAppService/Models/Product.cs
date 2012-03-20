@@ -13,6 +13,8 @@ namespace DataAvail.UralAppService.Models
         public int id { get; set; }
 
         public string name { get; set; }
+
+        internal int? ProducerId { get; set; }
     }
 
 }

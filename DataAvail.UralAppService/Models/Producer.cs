@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Data.Services.Common;
+using Microsoft.Data.Services.Toolkit.QueryModel;
 
 namespace DataAvail.UralAppService.Models
 {
@@ -12,5 +13,8 @@ namespace DataAvail.UralAppService.Models
         public int id { get; set; }
 
         public string name { get; set; }
+
+        [ForeignProperty]
+        public Product[] Products { get; set; }
     }
 }

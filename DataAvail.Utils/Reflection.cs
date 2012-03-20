@@ -63,9 +63,9 @@ namespace DataAvail.Utils
 
         }
 
-        public static bool IsPrimitive(Type Type)
+        public static bool IsPrimitive(Type Type, bool NullableAsPrimitive = true)
         {
-            return Type.IsPrimitive || Type == typeof(string) || Type == typeof(System.DateTime);   
+            return Type.IsPrimitive || Type == typeof(string) || Type == typeof(System.DateTime) || (NullableAsPrimitive && IsNullable(Type));   
         }
 
         //http://msdn.microsoft.com/en-us/library/ms366789.aspx?ppud=4

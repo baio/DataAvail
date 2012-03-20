@@ -115,7 +115,7 @@ namespace DataAvail.DataService.Provider
         {
             var type = typeof(T);
 
-            var keyField = (PropertyInfo)type.GetMember(FieldName)[0];
+            var keyField = (PropertyInfo)type.GetMember(FieldName, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance)[0];
 
             var key = int.Parse(Value);
 
@@ -180,6 +180,10 @@ namespace DataAvail.DataService.Provider
             Context.SaveChanges();
         }
 
+        public IQueryable<T> GetAllByForeignKey(string FKFieldName, string FKValue)
+        { 
+            return GetAllByForeignKey(null, FKFieldName, FKValue);
+        }
 
         public IQueryable<T> GetAllByForeignKey(ODataQueryOperation operation, string FKFieldName, string FKValue)
         {
@@ -187,21 +191,24 @@ namespace DataAvail.DataService.Provider
 
             q = FilterBy(q, FKFieldName, FKValue);
 
-            if (operation.FilterExpression != null)
+            if (operation != null)
             {
-                var expr = (System.Linq.Expressions.Expression<System.Func<T, bool>>)((UnaryExpression)operation.FilterExpression).Operand;
+                if (operation.FilterExpression != null)
+                {
+                    var expr = (System.Linq.Expressions.Expression<System.Func<T, bool>>)((UnaryExpression)operation.FilterExpression).Operand;
 
-                q = q.Where(expr);
-            }
+                    q = q.Where(expr);
+                }
 
-            if (operation.TopCount > 0)
-            {
-                q = q.Take(operation.TopCount);
-            }
+                if (operation.TopCount > 0)
+                {
+                    q = q.Take(operation.TopCount);
+                }
 
-            if (operation.SkipCount > 0)
-            {
-                q = q.Take(operation.SkipCount);
+                if (operation.SkipCount > 0)
+                {
+                    q = q.Take(operation.SkipCount);
+                }
             }
 
             return q;
